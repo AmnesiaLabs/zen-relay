@@ -40,7 +40,7 @@ This gif shows a dev installing and running this project from scratch on macOS 1
 
 [![asciicast](https://i.imgur.com/zU5CCVS.gif)](https://asciinema.org/a/J7LQKkyHUi1h6Xqav0b09Rjl1)
 
-A public instance is available at [relay.amnesia.software](https://relay.amnesia.software) (`wss://relay.amnesia.software`). Feel free to use and test on this instance.
+A public instance, which always mirrors this repository's master branch, is available at [relay.amnesia.software](https://relay.amnesia.software) (`wss://relay.amnesia.software`). Feel free to use and test on this instance.
 
 ## Installation
 
