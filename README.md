@@ -4,7 +4,7 @@
 
 - Open source and built upon well-established JS libraries.
 - Easy to deploy, modify and customize for any needs.
-- Runs on any operating system (as long as [Node v.12.16.3](https://nodejs.org/en/download/) is installed!)
+- Runs on any operating system (with [Node v.12.16.3](https://nodejs.org/en/download/) installed).
 - Entirely transparent.
 
 [![package version](https://img.shields.io/github/package-json/v/AmnesiaLabs/zen-relay?color=g&label=version)](https://github.com/AmnesiaLabs/zen-relay)
