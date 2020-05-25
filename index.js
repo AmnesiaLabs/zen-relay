@@ -45,13 +45,13 @@ io.sockets.on("connection", function (socket) {
 
   socket.on("client:authenticate", (data, ack) => {
     logger(`${socket.id} authenticating...`);
-    if (!data.uuid) return;
+    if (!data.uuid) return ack(500);
     socket.join(data.uuid);
     ack(200);
   });
 
   socket.on("client:setName", (data, ack) => {
-    logger(`${socket.id} setting name to ${data}.`);
+    logger(`${socket.id} set UUID room`);
     guests.forEach((sock) => {
       if (sock.id == socket.id) {
         socket._name = data;
