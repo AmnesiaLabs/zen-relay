@@ -1,4 +1,4 @@
-const VERBOSE = true;
+const VERBOSE = false;
 let PORT;
 
 const defaults = {
