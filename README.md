@@ -2,8 +2,6 @@
 
 💬🧠 A self-hosted and easily hackable websockets relay server built for [Zen Client](https://github.com/AmnesiaLabs/zen-client) and [Zen Bridge](https://github.com/AmnesiaLabs/zen-bridge) –
 
-<img align="right" src="https://i.imgur.com/zU5CCVS.gif" height="200">
-
 - Open source and built upon well-established JS libraries.
 - Easy to deploy, modify and customize for any needs.
 - Runs on any operating system (as long as [Node v.12.16.3](https://nodejs.org/en/download/) is installed!)
