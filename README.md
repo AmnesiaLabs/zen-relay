@@ -2,7 +2,7 @@
 
 Zen Relay is a self-hosted websockets relay providing connectivity to Zen Client and Zen Bridge pairings.
 
-A public instance is available at [relay.amnesia.software](https://relay.amnesia.software) (`wss://relay.amnesia.software`).
+A public instance is available at [relay.amnesia.software](https://relay.amnesia.software) (`wss://relay.amnesia.software`). Feel free to use and test on this instance.
 
 ## Installation
 
