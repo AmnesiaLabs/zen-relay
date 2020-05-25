@@ -1,22 +1,33 @@
 const VERBOSE = true;
-const PORT = process.argv[2];
+let PORT;
+
+const defaults = {
+  port: 8080,
+};
+
+const strings = {
+  failedLogin:
+    "Failed to connect, please try different connection parameters or contact relay operator.",
+  infoString: "zen-relay v." + require("./package.json").version,
+  listening: "zen-relay is now listening on http://localhost:<PORT>",
+  alreadyInUse: "Exited. Requested listening address is already in use.",
+  noPort: "No port specified, defaulting to http://localhost:8080...",
+};
 
 const app = require("express")();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http, { pingInterval: 2000 });
 const cors = require("cors");
-app.use(cors());
 
 const logger = function (l) {
   if (!VERBOSE) return;
   console.log(l);
 };
 
-const strings = {
-  failedLogin:
-    "Failed to connect, please try different connection parameters or contact relay operator.",
-};
+if (!process.argv[2]) console.error(strings.noPort);
+PORT = process.argv[2] ? process.argv[2] : defaults.port;
 
+// keep track of connected clients
 let guests = [];
 
 io.sockets.on("connection", function (socket) {
@@ -39,7 +50,6 @@ io.sockets.on("connection", function (socket) {
         );
       }
     });
-
     guests = guests.filter((g) => g.id !== socket.id);
   });
 
@@ -66,33 +76,29 @@ io.sockets.on("connection", function (socket) {
     ack(200);
   });
 
-  // allows client to disconnect themselves
-  socket.on("client:disconnect", function (data) {
-    socket.disconnect();
-  });
-
-  // bridge to client
-  // two-way data
   socket.on("raw", function (data) {
     socket.to(`${socket.rooms[socket._name]}`).emit("raw", data);
   });
 });
 
-app.get("*", function (req, res, next) {
+app.get("/stats", function (req, res) {
   res.json({
-    error:
-      "This isn't an HTTP server... Plus, wait a minute?! What are you even doing here?",
-    activity_logged: true,
+    connected_clients: guests.length,
+    health: "ok",
   });
 });
 
+app.use(function (req, res, next) {
+  res.status(404).send(strings.infoString);
+});
+
+app.use(cors());
+
 http
   .listen(PORT, () => {
-    console.log("zen-relay is now listening on http://localhost:" + PORT);
+    console.log(strings.listening.replace("<PORT>", PORT));
   })
   .on("error", (err) => {
     console.log(err);
-    return console.error(
-      "Exited. Requested listening address is already in use."
-    );
+    return console.error(strings.alreadyInUse);
   });
