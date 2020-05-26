@@ -114,7 +114,6 @@ io.sockets.on("connection", function (socket) {
 });
 
 app.get("/stats", function (req, res) {
-  webhook("test");
   res.json({
     connected_clients: guests.length,
     health: "ok",
