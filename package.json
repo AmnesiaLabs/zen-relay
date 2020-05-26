@@ -1,6 +1,6 @@
 {
   "name": "zen-relay",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "engines": {
     "node": ">=12.16.3"
   },
@@ -8,10 +8,11 @@
   "scripts": {
     "start": "node index.js 8080"
   },
-  "author": "",
+  "author": "Alec Armbruster, alec<at>amnesia.software",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
