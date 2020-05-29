@@ -63,6 +63,10 @@ PORT = process.argv[2]
 let guests = [];
 
 io.sockets.on("connection", function (socket) {
+  if (guests.indexOf((a) => a.id === socket.id) === 1) {
+    guests = guests.filter((g) => g.id !== socket.id);
+  }
+
   guests.push({
     id: socket.id,
     name: "",
