@@ -63,8 +63,11 @@ PORT = process.argv[2]
 let guests = [];
 
 io.sockets.on("connection", function (socket) {
-  if (guests.indexOf((a) => a.id === socket.id) === 1) {
-    guests = guests.filter((g) => g.id !== socket.id);
+  if (
+    guests.filter((a) => a.handshake.address === socket.handshake.address)
+      .length > 3
+  ) {
+    return socket.disconnect();
   }
 
   guests.push({
